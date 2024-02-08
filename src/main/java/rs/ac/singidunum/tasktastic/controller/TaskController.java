@@ -26,6 +26,15 @@ public class TaskController {
     }
     @PostMapping()
     public ResponseEntity<Task> addTask(@RequestBody Task task) {
+        task.setFinished(false);
         return new ResponseEntity<Task>(taskService.addTask(task), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable String id) {
+        System.out.println("Fetching tasks for user ID: " + id);
+        List<Task> tasks = taskService.getTasksByUserId(id);
+        System.out.println("Number of tasks found: " + tasks.size());
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 }

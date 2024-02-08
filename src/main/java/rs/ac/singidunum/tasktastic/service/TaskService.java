@@ -25,4 +25,9 @@ public class TaskService {
         task.setUser(userRepository.findById(task.getUser().getId()));
         return taskRepository.save(task);
     }
+
+    public List<Task> getTasksByUserId(String id) {
+        // When fetching tasks by user ID, use the findByUserIdWithUser() method
+        return taskRepository.findByUser_Id(id);
+    }
 }

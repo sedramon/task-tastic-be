@@ -4,7 +4,9 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import rs.ac.singidunum.tasktastic.model.Task;
 
+import java.util.List;
+
 public interface TaskRepository extends MongoRepository<Task, ObjectId> {
     Task findById(String id);
-    Task findByUserId(String userId);
+    List<Task> findByUser_Id(String userId);
 }
