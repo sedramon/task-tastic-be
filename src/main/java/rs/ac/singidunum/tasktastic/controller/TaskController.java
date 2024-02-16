@@ -1,5 +1,6 @@
 package rs.ac.singidunum.tasktastic.controller;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,11 +31,21 @@ public class TaskController {
         return new ResponseEntity<Task>(taskService.addTask(task), HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTaskToFinished(@PathVariable String id, @RequestBody Task task) {
+        return new ResponseEntity<Task>(taskService.updateTaskisFinished(id, task.isFinished()), HttpStatus.OK);
+    }
+
     @GetMapping("/users/{id}")
     public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable String id) {
         System.out.println("Fetching tasks for user ID: " + id);
         List<Task> tasks = taskService.getTasksByUserId(id);
         System.out.println("Number of tasks found: " + tasks.size());
         return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{taskId}")
+    public ResponseEntity<String> removeTask(@PathVariable String taskId) {
+        return taskService.deleteTask(taskId);
     }
 }
