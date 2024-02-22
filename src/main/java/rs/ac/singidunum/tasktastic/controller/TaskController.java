@@ -1,12 +1,10 @@
 package rs.ac.singidunum.tasktastic.controller;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.tasktastic.model.Task;
-import rs.ac.singidunum.tasktastic.model.User;
 import rs.ac.singidunum.tasktastic.service.TaskService;
 
 import java.util.List;
@@ -32,8 +30,8 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTaskToFinished(@PathVariable String id, @RequestBody Task task) {
-        return new ResponseEntity<Task>(taskService.updateTaskisFinished(id, task.isFinished()), HttpStatus.OK);
+    public ResponseEntity<Task> updateTaskToFinished(@PathVariable String id, @RequestBody boolean status) {
+        return new ResponseEntity<Task>(taskService.updateTaskisFinished(id, status), HttpStatus.OK);
     }
 
     @GetMapping("/users/{id}")

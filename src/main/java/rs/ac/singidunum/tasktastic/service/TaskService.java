@@ -13,6 +13,7 @@ import rs.ac.singidunum.tasktastic.repository.UserRepository;
 import java.time.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -50,5 +51,6 @@ public class TaskService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task not found");
         }
     }
+
 
 }
