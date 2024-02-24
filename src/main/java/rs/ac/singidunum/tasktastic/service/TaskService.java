@@ -36,9 +36,16 @@ public class TaskService {
         return taskRepository.findByUser_Id(id);
     }
 
-    public Task updateTaskisFinished(String id, boolean isFinished){
-        Task existingTask = taskRepository.findById(id);
-        existingTask.setFinished(isFinished);
+    public Task updateTaskisFinished(Task task){
+        System.out.println("RECEIVED TASK BEFORE UPDATE: " + task);  // Add this line
+
+        Task existingTask = taskRepository.findById(task.getId());
+        System.out.println("Existing Task: " + existingTask);
+
+        existingTask.setFinished(task.isFinished());
+
+        System.out.println("RECEIVED TASK AFTER UPDATE: " + existingTask);  // Add this line
+
         return taskRepository.save(existingTask);
     }
 
